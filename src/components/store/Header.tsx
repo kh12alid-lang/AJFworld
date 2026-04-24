@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, User, Heart, ShoppingCart, Menu, X, Minus, Plus, Trash2, Globe, Bell, Scale } from 'lucide-react';
+import { Search, User, Heart, ShoppingCart, Menu, X, Minus, Plus, Trash2, Globe, Scale } from 'lucide-react';
 
 interface SiteSettings {
   logoEnabled?: boolean;
@@ -10,7 +10,6 @@ interface SiteSettings {
 import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { useUser } from '@/context/UserContext';
-import { useNotifications } from '@/context/NotificationContext';
 import { useSearch } from '@/context/SearchContext';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
@@ -42,7 +41,6 @@ export default function Header() {
   
   const { language, setLanguage, isRTL, t } = useLanguage();
   const { user, isLoggedIn } = useUser();
-  const { unreadCount } = useNotifications();
   const { compareList } = useSearch();
   const {
     cartItems,
@@ -198,19 +196,6 @@ export default function Header() {
                 {compareList.length > 0 && (
                   <Badge className={`absolute -top-1 ${isRTL ? '-left-1' : '-right-1'} w-5 h-5 p-0 flex items-center justify-center bg-blue-500 text-[10px] animate-bounceIn`}>
                     {compareList.length}
-                  </Badge>
-                )}
-              </button>
-
-              {/* Notifications */}
-              <button 
-                onClick={() => navigate('/notifications')}
-                className="relative p-2 hover:bg-gray-100 rounded-full transition-all duration-200 hover:scale-110"
-              >
-                <Bell className="w-5 h-5 text-gray-700" />
-                {unreadCount > 0 && (
-                  <Badge className={`absolute -top-1 ${isRTL ? '-left-1' : '-right-1'} w-5 h-5 p-0 flex items-center justify-center bg-orange-500 text-[10px] animate-bounceIn`}>
-                    {unreadCount}
                   </Badge>
                 )}
               </button>
