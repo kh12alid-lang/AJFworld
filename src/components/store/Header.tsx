@@ -1,6 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, User, Heart, ShoppingCart, Menu, X, Minus, Plus, Trash2, Globe, Bell, Scale } from 'lucide-react';
+
+interface SiteSettings {
+  logoEnabled?: boolean;
+  storeName?: string;
+  storeNameEn?: string;
+}
 import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { useUser } from '@/context/UserContext';
@@ -26,6 +32,7 @@ const navCategories = [
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [siteSettings, setSiteSettings] = useState<SiteSettings>({ logoEnabled: true, storeName: 'AJFworld', storeNameEn: 'AJFworld' });
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -59,6 +66,18 @@ export default function Header() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  useEffect(() => {
+    const saved = localStorage.getItem('ajfworld_site_settings');
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        setSiteSettings(prev => ({ ...prev, ...parsed }));
+      } catch (e) {
+        console.error('Failed to load site settings', e);
+      }
+    }
+  }, []);
+
   const handleSearchFocus = () => {
     navigate('/search');
   };
@@ -78,22 +97,24 @@ export default function Header() {
         <div className="container-custom">
           {/* Main Header */}
           <div className="flex items-center justify-between h-16 md:h-20 gap-4">
-            {/* Logo */}
-            <a
-              href="/"
-              className="flex items-center gap-3 group"
-            >
-              <div className="w-10 h-10 transition-transform duration-300 group-hover:scale-110">
-                <img 
-                  src="/images/logo-64.png" 
-                  alt="AJFworld Logo" 
-                  className="w-full h-full object-contain"
-                />
-              </div>
-              <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-[#2d5d2a] to-[#1e401c] bg-clip-text text-transparent hidden sm:block">
-                AJFworld
-              </span>
-            </a>
+            {/* Logo - controlled by admin settings */}
+            {siteSettings.logoEnabled !== false && (
+              <a
+                href="/"
+                className="flex items-center gap-3 group"
+              >
+                <div className="w-10 h-10 transition-transform duration-300 group-hover:scale-110">
+                  <img 
+                    src="/images/logo-64.png" 
+                    alt="AJFworld Logo" 
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <span className="text-xl md:text-2xl font-bold bg-gradient-to-r from-[#2d5d2a] to-[#1e401c] bg-clip-text text-transparent hidden sm:block">
+                  {language === 'ar' ? (siteSettings.storeName || 'AJFworld') : (siteSettings.storeNameEn || 'AJFworld')}
+                </span>
+              </a>
+            )}
 
             {/* Search Bar - Desktop */}
             <div
