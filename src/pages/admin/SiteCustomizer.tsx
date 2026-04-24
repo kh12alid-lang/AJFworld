@@ -3,6 +3,7 @@ import { Palette, Image, Type, Save, RotateCcw, LayoutGrid, Plus, X } from 'luci
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useLanguage } from '@/context/LanguageContext';
+import { useSiteSettings } from '@/context/SiteSettingsContext';
 
 interface CustomSection {
   id: string;
@@ -61,32 +62,25 @@ const fontOptions = [
 
 export default function SiteCustomizer() {
   const { language, isRTL } = useLanguage();
-  const [settings, setSettings] = useState<SiteSettings>(defaultSettings);
+  const { settings: ctxSettings, saveSettings } = useSiteSettings();
+  const [settings, setSettings] = useState<SiteSettings>(ctxSettings || defaultSettings);
   const [saved, setSaved] = useState(false);
   const [activeTab, setActiveTab] = useState<'appearance' | 'sections'>('appearance');
 
   useEffect(() => {
-    const saved = localStorage.getItem('ajfworld_site_settings');
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        setSettings({ ...defaultSettings, ...parsed });
-      } catch (e) {
-        console.error('Failed to parse site settings', e);
-      }
-    }
-  }, []);
+    setSettings(ctxSettings || defaultSettings);
+  }, [ctxSettings]);
 
   const handleSave = () => {
-    localStorage.setItem('ajfworld_site_settings', JSON.stringify(settings));
+    saveSettings(settings);
     setSaved(true);
     setTimeout(() => setSaved(false), 2000);
   };
 
   const handleReset = () => {
     if (confirm(language === 'ar' ? 'هل أنت متأكد من إعادة الضبط؟' : 'Are you sure you want to reset?')) {
+      saveSettings(defaultSettings);
       setSettings(defaultSettings);
-      localStorage.removeItem('ajfworld_site_settings');
     }
   };
 

@@ -2,15 +2,11 @@ import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Search, User, Heart, ShoppingCart, Menu, X, Minus, Plus, Trash2, Globe, Scale } from 'lucide-react';
 
-interface SiteSettings {
-  logoEnabled?: boolean;
-  storeName?: string;
-  storeNameEn?: string;
-}
-import { useCart } from '@/context/CartContext';
+import { useSiteSettings } from '@/context/SiteSettingsContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { useUser } from '@/context/UserContext';
 import { useSearch } from '@/context/SearchContext';
+import { useCart } from '@/context/CartContext';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -31,7 +27,7 @@ const navCategories = [
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
-  const [siteSettings, setSiteSettings] = useState<SiteSettings>({ logoEnabled: true, storeName: 'AJFworld', storeNameEn: 'AJFworld' });
+  const { settings: siteSettings } = useSiteSettings();
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchFocused, setIsSearchFocused] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -62,18 +58,6 @@ export default function Header() {
     };
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  useEffect(() => {
-    const saved = localStorage.getItem('ajfworld_site_settings');
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        setSiteSettings(prev => ({ ...prev, ...parsed }));
-      } catch (e) {
-        console.error('Failed to load site settings', e);
-      }
-    }
   }, []);
 
   const handleSearchFocus = () => {

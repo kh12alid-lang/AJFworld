@@ -10,6 +10,7 @@ import { LoyaltyProvider } from '@/context/LoyaltyContext';
 import { SearchProvider } from '@/context/SearchContext';
 import { NotificationProvider } from '@/context/NotificationContext';
 import { FlashSaleProvider } from '@/context/FlashSaleContext';
+import { SiteSettingsProvider } from '@/context/SiteSettingsContext';
 
 // Global Components
 import LiveChat from '@/components/store/LiveChat';
@@ -179,9 +180,11 @@ function App() {
                       <SearchProvider>
                         <NotificationProvider>
                           <FlashSaleProvider>
-                            <AppRoutes />
-                            <LiveChat />
-                            <PushNotifications />
+                            <SiteSettingsProvider>
+                              <AppRoutes />
+                              <LiveChat />
+                              <PushNotifications />
+                            </SiteSettingsProvider>
                           </FlashSaleProvider>
                         </NotificationProvider>
                       </SearchProvider>
