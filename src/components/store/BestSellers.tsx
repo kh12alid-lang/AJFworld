@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { products } from '@/data/products';
+import { useStoreProducts } from '@/hooks/useStoreData';
 import ProductCard from './ProductCard';
 import { Button } from '@/components/ui/button';
 import { Award } from 'lucide-react';
@@ -28,6 +28,7 @@ export default function BestSellers() {
     return () => observer.disconnect();
   }, []);
 
+  const products = useStoreProducts();
   const bestSellers = products.filter((p) => p.isBestSeller).slice(0, 8);
 
   const badgeText = language === 'ar' ? 'الأكثر طلباً' : 'Most Requested';

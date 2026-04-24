@@ -6,7 +6,7 @@ import { useSearch } from '@/context/SearchContext';
 import { useLanguage } from '@/context/LanguageContext';
 import { useReviews } from '@/context/ReviewContext';
 import { useCart } from '@/context/CartContext';
-import { currency, currencyEn, products } from '@/data/products';
+import { currency, currencyEn } from '@/data/products';
 import Header from '@/components/store/Header';
 import Footer from '@/components/store/Footer';
 
@@ -63,7 +63,7 @@ export default function Compare() {
                 {language === 'ar' ? 'مقارنة المنتجات' : 'Compare Products'}
               </h1>
               <p className="text-gray-500">
-                {products.length} {language === 'ar' ? 'منتجات' : 'products'}
+                {compareProducts.length} {language === 'ar' ? 'منتجات' : 'products'}
               </p>
             </div>
             <Button

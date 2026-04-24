@@ -15,7 +15,8 @@ import { Progress } from '@/components/ui/progress';
 import { useFlashSales } from '@/context/FlashSaleContext';
 import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
-import { currency, currencyEn, products } from '@/data/products';
+import { currency, currencyEn } from '@/data/products';
+import { useStoreProducts } from '@/hooks/useStoreData';
 import Header from '@/components/store/Header';
 import Footer from '@/components/store/Footer';
 
@@ -62,6 +63,7 @@ export default function FlashSales() {
   const { addToCart } = useCart();
 
   const curr = language === 'ar' ? currency : currencyEn;
+  const products = useStoreProducts();
   
   const flashSales = getActiveFlashSales();
   const dailyDeals = getActiveDailyDeals();

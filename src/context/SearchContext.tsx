@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useCallback, useMemo, type ReactNode } from 'react';
-import { products, type Product } from '@/data/products';
+import { products as staticProducts, type Product } from '@/data/products';
 
 export interface SearchFilters {
   query: string;
@@ -94,7 +94,7 @@ export function SearchProvider({ children }: { children: ReactNode }) {
     const lowerQuery = query.toLowerCase();
     const suggestions = new Set<string>();
     
-    products.forEach(product => {
+    staticProducts.forEach(product => {
       if (product.name.toLowerCase().includes(lowerQuery)) {
         suggestions.add(product.name);
       }
@@ -112,7 +112,7 @@ export function SearchProvider({ children }: { children: ReactNode }) {
   const suggestions = useMemo(() => getSuggestions(filters.query), [filters.query, getSuggestions]);
 
   const searchResults = useMemo(() => {
-    let results = [...products];
+    let results = [...staticProducts];
 
     // Filter by query
     if (filters.query.trim()) {
@@ -189,7 +189,7 @@ export function SearchProvider({ children }: { children: ReactNode }) {
 
   const getViewedProducts = useCallback(() => {
     return viewedProducts
-      .map(id => products.find(p => p.id === id))
+      .map(id => staticProducts.find(p => p.id === id))
       .filter((p): p is Product => p !== undefined);
   }, [viewedProducts]);
 
@@ -215,7 +215,7 @@ export function SearchProvider({ children }: { children: ReactNode }) {
 
   const getCompareProducts = useCallback(() => {
     return compareList
-      .map(id => products.find(p => p.id === id))
+      .map(id => staticProducts.find(p => p.id === id))
       .filter((p): p is Product => p !== undefined);
   }, [compareList]);
 

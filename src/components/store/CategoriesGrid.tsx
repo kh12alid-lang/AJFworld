@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import { categories } from '@/data/products';
+import { useStoreCategories } from '@/hooks/useStoreData';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function CategoriesGrid() {
@@ -25,9 +25,10 @@ export default function CategoriesGrid() {
     return () => observer.disconnect();
   }, []);
 
+  const categories = useStoreCategories();
+  const productText = language === 'ar' ? 'منتج' : 'products';
   const title = language === 'ar' ? 'تسوق حسب الفئة' : 'Shop by Category';
   const subtitle = language === 'ar' ? 'اكتشف مجموعتنا المتنوعة من المنتجات' : 'Discover our diverse collection of products';
-  const productText = language === 'ar' ? 'منتج' : 'products';
 
   return (
     <section ref={sectionRef} className="section-padding bg-white" dir={isRTL ? 'rtl' : 'ltr'}>

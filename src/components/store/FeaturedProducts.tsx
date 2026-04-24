@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
-import { products } from '@/data/products';
+import { useStoreProducts } from '@/hooks/useStoreData';
 import ProductCard from './ProductCard';
 import { Button } from '@/components/ui/button';
 import { useLanguage } from '@/context/LanguageContext';
@@ -42,6 +42,7 @@ export default function FeaturedProducts() {
     }
   };
 
+  const products = useStoreProducts();
   const featuredProducts = products.filter((p) => p.badge || p.isNew).slice(0, 8);
 
   const title = language === 'ar' ? 'منتجات مميزة' : 'Featured Products';

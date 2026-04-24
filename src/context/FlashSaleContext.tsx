@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, useCallback, useEffect, type ReactNode } from 'react';
-import { products } from '@/data/products';
+import { products as staticProducts } from '@/data/products';
 
 export interface FlashSale {
   id: string;
@@ -192,7 +192,7 @@ export function FlashSaleProvider({ children }: { children: ReactNode }) {
   }, [getFlashSaleProduct, getDailyDealProduct, isFlashSaleActive, isDailyDealActive]);
 
   const getBestDeal = useCallback((productId: number) => {
-    const product = products.find(p => p.id === productId);
+    const product = staticProducts.find(p => p.id === productId);
     if (!product) return { price: 0, discount: 0, type: 'none' as const };
     
     const originalPrice = product.oldPrice || product.price;

@@ -18,7 +18,8 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useCart } from '@/context/CartContext';
 import { useLanguage } from '@/context/LanguageContext';
-import { products, currency, currencyEn } from '@/data/products';
+import { useStoreProducts } from '@/hooks/useStoreData';
+import { currency, currencyEn } from '@/data/products';
 import type { Product } from '@/data/products';
 import Header from '@/components/store/Header';
 import Footer from '@/components/store/Footer';
@@ -37,6 +38,7 @@ export default function ProductDetail() {
   const { addToCart, addToWishlist, removeFromWishlist, isInWishlist } = useCart();
   const { language, isRTL } = useLanguage();
   
+  const products = useStoreProducts();
   const [product, setProduct] = useState<Product | null>(null);
   const [quantity, setQuantity] = useState(1);
   const [selectedImage, setSelectedImage] = useState(0);
