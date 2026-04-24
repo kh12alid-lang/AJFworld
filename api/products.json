@@ -1,0 +1,149 @@
+{
+  "status": "success",
+  "data": {
+    "products": [
+      {
+        "id": 1,
+        "name": "سماعات لاسلكية فاخرة",
+        "nameEn": "Premium Wireless Headphones",
+        "description": "سماعات عالية الجودة مع إلغاء الضوضاء",
+        "descriptionEn": "High quality headphones with noise cancellation",
+        "price": 299,
+        "oldPrice": 399,
+        "image": "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400",
+        "category": "electronics",
+        "rating": 4.5,
+        "reviewCount": 128,
+        "isNew": false,
+        "isBestSeller": true,
+        "inStock": true
+      },
+      {
+        "id": 2,
+        "name": "ساعة ذكية رياضية",
+        "nameEn": "Smart Sports Watch",
+        "description": "تتبع اللياقة البدنية مع بطارية تدوم 7 أيام",
+        "descriptionEn": "Fitness tracking with 7-day battery life",
+        "price": 599,
+        "oldPrice": 799,
+        "image": "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400",
+        "category": "electronics",
+        "rating": 4.8,
+        "reviewCount": 256,
+        "isNew": true,
+        "isBestSeller": false,
+        "inStock": true
+      },
+      {
+        "id": 3,
+        "name": "حقيبة يد أنيقة",
+        "nameEn": "Elegant Handbag",
+        "description": "حقيبة جلد طبيعي بتصميم عصري",
+        "descriptionEn": "Genuine leather bag with modern design",
+        "price": 449,
+        "oldPrice": null,
+        "image": "https://images.unsplash.com/photo-1584917865442-de89df76afd3?w=400",
+        "category": "fashion",
+        "rating": 4.3,
+        "reviewCount": 89,
+        "isNew": false,
+        "isBestSeller": false,
+        "inStock": true
+      },
+      {
+        "id": 4,
+        "name": "هاتف ذكي فاخر",
+        "nameEn": "Premium Smartphone",
+        "description": "أحدث هاتف مع كاميرا احترافية",
+        "descriptionEn": "Latest phone with professional camera",
+        "price": 3499,
+        "oldPrice": 3999,
+        "image": "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400",
+        "category": "electronics",
+        "rating": 4.9,
+        "reviewCount": 512,
+        "isNew": false,
+        "isBestSeller": true,
+        "inStock": true
+      },
+      {
+        "id": 5,
+        "name": "نظارة شمسية فاخرة",
+        "nameEn": "Luxury Sunglasses",
+        "description": "نظارة شمسية بإطار معدني",
+        "descriptionEn": "Metal frame sunglasses",
+        "price": 299,
+        "oldPrice": 449,
+        "image": "https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=400",
+        "category": "fashion",
+        "rating": 4.6,
+        "reviewCount": 167,
+        "isNew": true,
+        "isBestSeller": false,
+        "inStock": true
+      },
+      {
+        "id": 6,
+        "name": "حذاء رياضي مريح",
+        "nameEn": "Comfortable Sports Shoes",
+        "description": "حذاء رياضي بتقنية امتصاص الصدمات",
+        "descriptionEn": "Sports shoes with shock absorption technology",
+        "price": 349,
+        "oldPrice": null,
+        "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=400",
+        "category": "fashion",
+        "rating": 4.4,
+        "reviewCount": 234,
+        "isNew": false,
+        "isBestSeller": false,
+        "inStock": true
+      }
+    ],
+    "categories": [
+      {"id": "electronics", "name": "إلكترونيات", "nameEn": "Electronics", "icon": "phone_android"},
+      {"id": "fashion", "name": "أزياء", "nameEn": "Fashion", "icon": "checkroom"},
+      {"id": "home", "name": "منزل", "nameEn": "Home", "icon": "home"},
+      {"id": "sports", "name": "رياضة", "nameEn": "Sports", "icon": "sports"},
+      {"id": "beauty", "name": "جمال", "nameEn": "Beauty", "icon": "spa"},
+      {"id": "toys", "name": "ألعاب", "nameEn": "Toys", "icon": "toys"}
+    ],
+    "flashSales": [
+      {
+        "id": "flash-1",
+        "productId": 1,
+        "salePrice": 199,
+        "originalPrice": 299,
+        "discount": 33,
+        "endTime": "2025-01-20T23:59:59",
+        "stockLimit": 50,
+        "soldCount": 32
+      },
+      {
+        "id": "flash-2",
+        "productId": 3,
+        "salePrice": 899,
+        "originalPrice": 1299,
+        "discount": 31,
+        "endTime": "2025-01-19T23:59:59",
+        "stockLimit": 30,
+        "soldCount": 18
+      }
+    ],
+    "coupons": [
+      {
+        "code": "WELCOME20",
+        "type": "percentage",
+        "value": 20,
+        "minOrder": 100,
+        "description": "خصم 20% على أول طلب"
+      },
+      {
+        "code": "SAVE50",
+        "type": "fixed",
+        "value": 50,
+        "minOrder": 300,
+        "description": "خصم 50 درهم على الطلبات فوق 300"
+      }
+    ]
+  }
+}

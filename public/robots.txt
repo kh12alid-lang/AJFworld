@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://ajworld.ae/sitemap.xml
+
+# Disallow admin pages
+Disallow: /admin/
+Disallow: /admin-login/
+
+# Crawl-delay for bots
+Crawl-delay: 1
